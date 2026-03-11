@@ -3,7 +3,7 @@ entries:
   apicurio:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-11T21:23:37.674126747+05:30"
+    created: "2026-03-11T21:28:08.953978494+05:30"
     description: A Helm chart for Kubernetes
     digest: 0ff9112b608c269952da6e55d4f6934b318136f0976ac083b18ebb3278d35bf6
     name: apicurio
@@ -14,12 +14,12 @@ entries:
   trino:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-11T21:23:37.675410199+05:30"
+    created: "2026-03-11T21:28:08.955544884+05:30"
     description: A Helm chart for Kubernetes
-    digest: f0797273038ccccd4e65773a3d37e20ebfe3ec17dfbb6cfff4b276b29323c29d
+    digest: 599c45198407c674c46f20476f4ec5953625e0fd092c2ece9ab257bb8330f8aa
     name: trino
     type: application
     urls:
     - https://PGuardians.github.io/fmn-helm-tools/trino-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-11T21:23:37.672878786+05:30"
+generated: "2026-03-11T21:28:08.95257568+05:30"
