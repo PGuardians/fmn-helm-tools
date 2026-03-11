@@ -1,0 +1,67 @@
+replicaCount: 1
+
+image:
+  repository: trinodb/trino
+  pullPolicy: Always
+  tag: latest
+
+coordinator:
+  enabled: true
+  nameOverride: "coordinator"
+  replicas: 1
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 31104
+
+  configProperties:
+    coordinator: "true"
+    node-scheduler.include-coordinator: "true"
+    http-server.http.port: "8080"
+    discovery.uri: "http://trino-coordinator:8080"
+    web-ui.enabled: "true"
+
+  jvm:
+    config:
+      - "-Dtrino.metrics.set=all"
+      - "-Dtrino.metrics.enabled=true"
+      - "-Dtrino.metrics.statsd.enabled=true"
+      - "-Dtrino.metrics.statsd.host=statsd.default.svc.cluster.local"
+      - "-Dtrino.metrics.statsd.port=8125"
+      - "-Dtrino.metrics.statsd.period=5s"
+      - "-Dtrino.metrics.statsd.prefix=trino"
+
+worker:
+  enabled: true
+  nameOverride: "worker"
+  replicas: 1
+  configProperties:
+    http-server.http.port: "8080"
+    discovery.uri: "http://trino-coordinator:8080"
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+
+  jvm:
+    config:
+      - "-Dtrino.metrics.set=all"
+      - "-Dtrino.metrics.enabled=true"
+      - "-Dtrino.metrics.statsd.enabled=true"
+      - "-Dtrino.metrics.statsd.host=statsd.default.svc.cluster.local"
+      - "-Dtrino.metrics.statsd.port=8125"
+      - "-Dtrino.metrics.statsd.period=5s"
+      - "-Dtrino.metrics.statsd.prefix=trino"
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

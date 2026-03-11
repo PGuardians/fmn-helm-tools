@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trino-coordinator
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.coordinator.replicas }}
+  selector:
+    matchLabels:
+      app: trino
+      role: coordinator
+  template:
+    metadata:
+      labels:
+        app: trino
+        role: coordinator
+    spec:
+      imagePullSecrets:
+        - name: acr-secret
+
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
+      containers:
+        - name: trino
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: TRINO_ROLE
+              value: "coordinator"
+            - name: JAVA_TOOL_OPTIONS
+              value: "{{ .Values.coordinator.additionalJVMConfig | join " " }}"
+            - name: CATALOG_MANAGEMENT
+              value: "dynamic"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: catalogs
+              mountPath: /etc/trino/catalog
+          resources:
+{{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: catalogs
+          configMap:
+            name: {{ include "trino.fullname" . }}-catalogs
