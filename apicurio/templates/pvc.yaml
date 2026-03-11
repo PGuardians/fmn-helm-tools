@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apicurio-pvc
+  namespace: {{ .Values.namespace }}
+spec:
+  volumeName: apicurio-pv
+  storageClassName: {{ .Values.storage.storageClass }}
+
+  accessModes:
+  - ReadWriteMany
+
+  resources:
+    requests:
+      storage: {{ .Values.storage.size }}

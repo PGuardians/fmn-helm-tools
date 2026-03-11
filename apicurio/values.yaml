@@ -1,0 +1,22 @@
+namespace: efs-dev
+
+replicaCount: 1
+
+image:
+  repository: apicurio/apicurio-registry-kafkasql
+  tag: 2.6.12.Final
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30091
+
+kafka:
+  bootstrapServers: kafka-service.efs-dev.svc.cluster.local:9092
+
+storage:
+  size: 50Gi
+  storageClass: azureblob-sc
+  containerName: tools
+  volumeHandle: apicurio-pv

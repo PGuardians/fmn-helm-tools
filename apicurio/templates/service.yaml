@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-apicurio
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: apicurio
+  type: {{ .Values.service.type }}
+
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+    nodePort: {{ .Values.service.nodePort }}
