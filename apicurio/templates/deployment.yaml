@@ -1,22 +1,37 @@
-namespace: efs-dev
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apicurio
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: apicurio
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: apicurio
+  template:
+    metadata:
+      labels:
+        app: apicurio
+    spec:
+      containers:
+      - name: apicurio
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
 
-replicaCount: 1
+        ports:
+        - containerPort: {{ .Values.service.port }}
 
-image:
-  repository: apicurio/apicurio-registry-kafkasql
-  tag: 2.6.12.Final
-  pullPolicy: Always
+        env:
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "{{ .Values.kafka.bootstrapServers }}"
 
-service:
-  type: NodePort
-  port: 8080
-  nodePort: 30091
+        volumeMounts:
+        - name: apicurio-storage
+          mountPath: /registry-data
 
-kafka:
-  bootstrapServers: kafka-service.efs-dev.svc.cluster.local:9092
-
-storage:
-  size: 50Gi
-  storageClass: azureblob-sc
-  containerName: tools
-  volumeHandle: apicurio-pv
+      volumes:
+      - name: apicurio-storage
+        persistentVolumeClaim:
+          claimName: apicurio-pvc
