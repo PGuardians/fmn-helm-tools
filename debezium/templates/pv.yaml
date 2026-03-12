@@ -1,0 +1,24 @@
+{{- if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.persistence.volumeName }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.persistence.storageClass }}
+  csi:
+    driver: blob.csi.azure.com
+    readOnly: false
+    volumeHandle: {{ .Values.persistence.volumeName }}
+    volumeAttributes:
+      containerName: {{ .Values.persistence.containerName | default "tools" }}
+      protocol: {{ .Values.persistence.protocol | default "fuse2" }}
+      allowOther: "true"
+    nodeStageSecretRef:
+      name: {{ .Values.persistence.nodeStageSecretName | default "azure-blob-secret" }}
+      namespace: {{ .Release.Namespace }}
+{{- end }}

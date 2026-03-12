@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: crfmphbidevneu001.azurecr.io/debezium
+  tag: test
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: acr-secret
+
+service:
+  type: ClusterIP
+  port: 9092
+
+persistence:
+  enabled: true
+  storageClass: azureblob-sc
+  accessMode: ReadWriteMany
+  size: 50Gi
+  volumeName: debezium-pv
+  mountPath: /var/log/
+  subPath: debezium
