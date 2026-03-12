@@ -1,38 +1,39 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kafka-deployment
+  name: {{ include "kafka.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: kafka
+    {{- include "kafka.labels" . | nindent 4 }}
 spec:
-  serviceName: kafka-service
+  serviceName: {{ include "kafka.fullname" . }}-svc
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: kafka
+      app: {{ include "kafka.fullname" . }}
   template:
     metadata:
       labels:
-        app: kafka
+        app: {{ include "kafka.fullname" . }}
     spec:
       imagePullSecrets:
-        - name: {{ .Values.imagePullSecret }}
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
       containers:
-        - name: kafka-service
+        - name: kafka
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.clusterIP.port }}
-          command:
-            - "/opt/kafka/bin/kafka-server-start.sh"
-            - "/opt/kafka/config/kraft/server.properties"
-          # Uncomment if you want persistent logs
-          # volumeMounts:
-          #   - name: kafka-vol
-          #     mountPath: /tmp/kraft-combined-logs/
-          #     subPath: kafka/
-      # volumes:
-      #   - name: kafka-vol
-      #     persistentVolumeClaim:
-      #       claimName: kafka-pvc
+            - containerPort: 9092
+          command: ["/opt/kafka/bin/kafka-server-start.sh", "/opt/kafka/config/kraft/server.properties"]
+          volumeMounts:
+            - name: kafka-data
+              mountPath: /tmp/kraft-combined-logs
+  volumeClaimTemplates:
+    - metadata:
+        name: kafka-data
+      spec:
+        accessModes: [ "{{ .Values.persistence.accessMode }}" ]
+        storageClassName: "{{ .Values.persistence.storageClass }}"
+        resources:
+          requests:
+            storage: "{{ .Values.persistence.size }}"

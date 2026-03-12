@@ -1,12 +1,15 @@
+{{- if .Values.persistence.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: kafka-pvc
+  name: {{ .Release.Name }}-pvc
   namespace: {{ .Release.Namespace }}
 spec:
-  volumeName: kafka-pv
+  volumeName: {{ .Release.Name }}-pv
+  storageClassName: {{ .Values.persistence.storageClass }}
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.storage.size }}
+      storage: {{ .Values.persistence.size }}
+{{- end }}

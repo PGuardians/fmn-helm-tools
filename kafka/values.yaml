@@ -5,25 +5,16 @@ image:
   tag: latest
   pullPolicy: Always
 
-imagePullSecret: acr-secret
+imagePullSecrets:
+  - name: acr-secret
 
 service:
-  clusterIP:
-    type: ClusterIP
-    port: 9092
-    targetPort: 9092
+  type: NodePort
+  port: 9092
+  nodePort: 32092
 
-  nodePort:
-    type: NodePort
-    port: 9092
-    targetPort: 9092
-    nodePort: 32292
-
-storage:
+persistence:
+  enabled: true
+  storageClass: azureblob-sc
+  accessMode: ReadWriteMany
   size: 50Gi
-
-pv:
-  containerName: tools
-
-blobSecret:
-  name: azure-blob-secret

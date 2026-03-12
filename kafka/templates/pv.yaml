@@ -1,21 +1,24 @@
+{{- if .Values.persistence.enabled }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: kafka-pv
+  name: {{ .Release.Name }}-pv
 spec:
   capacity:
-    storage: {{ .Values.storage.size }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.persistence.accessMode }}
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.persistence.storageClass }}
   csi:
     driver: blob.csi.azure.com
     readOnly: false
-    volumeHandle: kafka-pv
+    volumeHandle: {{ .Release.Name }}-pv
     volumeAttributes:
-      containerName: {{ .Values.pv.containerName }}
+      containerName: tools
       protocol: fuse2
       allowOther: "true"
     nodeStageSecretRef:
-      name: {{ .Values.blobSecret.name }}
+      name: azure-blob-secret
       namespace: {{ .Release.Namespace }}
+{{- end }}
