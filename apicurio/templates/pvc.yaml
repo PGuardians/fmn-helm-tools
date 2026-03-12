@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: apicurio-pvc
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   volumeName: apicurio-pv
   storageClassName: {{ .Values.storage.storageClass }}

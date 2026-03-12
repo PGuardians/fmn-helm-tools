@@ -3,45 +3,66 @@ entries:
   apicurio:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T15:14:20.933826492+05:30"
+    created: "2026-03-12T18:35:07.722586842+05:30"
     description: A Helm chart for Kubernetes
     digest: 259a52427166dce6f5dbb07bfd849862c9011617d93b7abf488b86d127daee9a
     name: apicurio
     type: application
     urls:
-    - https://PGuardians.github.io/fmn-helm-tools/apicurio-0.1.0.tgz
+    - apicurio-0.1.0.tgz
+    version: 0.1.0
+  debezium:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-12T18:35:07.7236279+05:30"
+    description: A Helm chart for Debezium deployment
+    digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
+    name: debezium
+    type: application
+    urls:
+    - debezium-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-12T18:35:07.727661531+05:30"
+    description: A Helm chart for Debezium deployment
+    digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
+    name: debezium
+    type: application
+    urls:
+    - repo/debezium-0.1.0.tgz
     version: 0.1.0
   kafka:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2026-03-12T15:14:20.934890398+05:30"
-    description: A Helm chart for Kubernetes
-    digest: b0166e8c401c14880d5628f4101ef18912d3b5760bd1c9c9ce91c7d3b872c98f
+    appVersion: 3.5.1
+    created: "2026-03-12T18:35:07.724649824+05:30"
+    description: A Helm chart for Kafka with PV/PVC and NodePort
+    digest: f6fb382fe20cd56ba191b9429b25c19a7dfff507e02dad1ecf27fa228e0891e8
     name: kafka
     type: application
     urls:
-    - https://PGuardians.github.io/fmn-helm-tools/kafka-0.1.0.tgz
+    - kafka-0.1.0.tgz
     version: 0.1.0
   redis:
   - apiVersion: v2
     appVersion: "7"
-    created: "2026-03-12T15:14:20.935911064+05:30"
+    created: "2026-03-12T18:35:07.725379801+05:30"
     description: Redis Deployment for Kubernetes
     digest: ac75bed72f5c0a43f420495ec89a49fe1bd1732ad388f06d844d12abf932a805
     name: redis
     type: application
     urls:
-    - https://PGuardians.github.io/fmn-helm-tools/redis-0.1.0.tgz
+    - redis-0.1.0.tgz
     version: 0.1.0
   trino:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T15:14:20.937383172+05:30"
+    created: "2026-03-12T18:35:07.726852956+05:30"
     description: A Helm chart for Kubernetes
     digest: 599c45198407c674c46f20476f4ec5953625e0fd092c2ece9ab257bb8330f8aa
     name: trino
     type: application
     urls:
-    - https://PGuardians.github.io/fmn-helm-tools/trino-0.1.0.tgz
+    - trino-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-12T15:14:20.932337692+05:30"
+generated: "2026-03-12T18:35:07.721156537+05:30"

@@ -22,4 +22,4 @@ spec:
 
     nodeStageSecretRef:
       name: azure-blob-secret
-      namespace: {{ .Values.namespace }}
+      namespace: {{ .Release.Namespace }}
