@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: git-opa
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: policy-dev
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: policy-dev
+      protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+{{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.nodePort }}
+{{- end }}
+  selector:
+    app: policy-dev

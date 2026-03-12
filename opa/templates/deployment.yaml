@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "opa.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: policy-dev
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: policy-dev
+  template:
+    metadata:
+      labels:
+        app: policy-dev
+    spec:
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      containers:
+        - name: {{ .Values.container.name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: {{ toJson .Values.container.command }}
+          ports:
+            - containerPort: {{ .Values.container.port }}

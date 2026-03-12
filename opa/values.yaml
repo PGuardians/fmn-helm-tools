@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: crfmphbidevneu001.azurecr.io/opa
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: acr-secret
+
+service:
+  type: ClusterIP
+  port: 8181
+  nodePort: 30134
+
+container:
+  name: policy-dev
+  port: 8181
+  command:
+    - ./opa
+    - run
+    - --server
+    - --addr
+    - :8181
+    - /git_opa_one.rego
