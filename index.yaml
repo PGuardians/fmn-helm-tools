@@ -3,7 +3,7 @@ entries:
   apicurio:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T12:51:03.082715389+05:30"
+    created: "2026-03-12T15:14:20.933826492+05:30"
     description: A Helm chart for Kubernetes
     digest: 259a52427166dce6f5dbb07bfd849862c9011617d93b7abf488b86d127daee9a
     name: apicurio
@@ -11,10 +11,21 @@ entries:
     urls:
     - https://PGuardians.github.io/fmn-helm-tools/apicurio-0.1.0.tgz
     version: 0.1.0
+  kafka:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-03-12T15:14:20.934890398+05:30"
+    description: A Helm chart for Kubernetes
+    digest: b0166e8c401c14880d5628f4101ef18912d3b5760bd1c9c9ce91c7d3b872c98f
+    name: kafka
+    type: application
+    urls:
+    - https://PGuardians.github.io/fmn-helm-tools/kafka-0.1.0.tgz
+    version: 0.1.0
   redis:
   - apiVersion: v2
     appVersion: "7"
-    created: "2026-03-12T12:51:03.083459676+05:30"
+    created: "2026-03-12T15:14:20.935911064+05:30"
     description: Redis Deployment for Kubernetes
     digest: ac75bed72f5c0a43f420495ec89a49fe1bd1732ad388f06d844d12abf932a805
     name: redis
@@ -25,7 +36,7 @@ entries:
   trino:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T12:51:03.084712698+05:30"
+    created: "2026-03-12T15:14:20.937383172+05:30"
     description: A Helm chart for Kubernetes
     digest: 599c45198407c674c46f20476f4ec5953625e0fd092c2ece9ab257bb8330f8aa
     name: trino
@@ -33,4 +44,4 @@ entries:
     urls:
     - https://PGuardians.github.io/fmn-helm-tools/trino-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-12T12:51:03.081458244+05:30"
+generated: "2026-03-12T15:14:20.932337692+05:30"
