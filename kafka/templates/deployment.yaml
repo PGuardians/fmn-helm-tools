@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka-deployment
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: kafka
+spec:
+  serviceName: kafka-service
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecret }}
+      containers:
+        - name: kafka-service
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.clusterIP.port }}
+          command:
+            - "/opt/kafka/bin/kafka-server-start.sh"
+            - "/opt/kafka/config/kraft/server.properties"
+          # Uncomment if you want persistent logs
+          # volumeMounts:
+          #   - name: kafka-vol
+          #     mountPath: /tmp/kraft-combined-logs/
+          #     subPath: kafka/
+      # volumes:
+      #   - name: kafka-vol
+      #     persistentVolumeClaim:
+      #       claimName: kafka-pvc
