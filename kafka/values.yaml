@@ -17,7 +17,7 @@ service:
     type: NodePort
     port: 9092
     targetPort: 9092
-    nodePort: 32092
+    nodePort: 32292
 
 storage:
   size: 50Gi
