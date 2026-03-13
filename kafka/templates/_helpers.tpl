@@ -1,10 +1,17 @@
-{{- define "kafka.fullname" -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
+{{/*
+Expand the name of the chart
+*/}}
+{{- define "kafka.name" -}}
+{{- .Chart.Name -}}
+{{- end }}
 
-{{- define "kafka.labels" -}}
-app.kubernetes.io/name: {{ .Chart.Name }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/version: {{ .Chart.AppVersion }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end -}}
+{{/*
+Create a default fully qualified name
+*/}}
+{{- define "kafka.fullname" -}}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride }}
+{{- else }}
+{{- printf "%s-%s" .Release.Name .Chart.Name }}
+{{- end }}
+{{- end }}
