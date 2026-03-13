@@ -1,12 +1,12 @@
 {{/*
-Expand the name of the chart
+Chart name
 */}}
 {{- define "kafka.name" -}}
 {{- .Chart.Name -}}
 {{- end }}
 
 {{/*
-Create a default fully qualified name
+Full release name
 */}}
 {{- define "kafka.fullname" -}}
 {{- printf "%s-%s" .Release.Name .Chart.Name }}
