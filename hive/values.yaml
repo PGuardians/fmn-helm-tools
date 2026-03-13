@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: crfmphbidevneu001.azurecr.io/hive
+  tag: test
+  pullPolicy: Always
+
+imagePullSecret: acr-secret
+
+service:
+  type: NodePort
+  hiveserver2:
+    port: 10000
+    nodePort: 30089
+  metastore:
+    port: 9083
+    nodePort: 30090
+
+persistence:
+  storage: 50Gi
+  storageClass: azureblob-sc
+  accessMode: ReadWriteMany
+
+volume:
+  containerName: tools
+
+secret:
+  name: azure-blob-secret

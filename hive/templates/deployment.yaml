@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hive.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: hive
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hive
+  template:
+    metadata:
+      labels:
+        app: hive
+    spec:
+
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecret }}
+
+      containers:
+        - name: hive-service
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.service.hiveserver2.port }}
+            - containerPort: {{ .Values.service.metastore.port }}
+
+          command: ["hive","--service","metastore"]
+
+          volumeMounts:
+            - name: hive-vol
+              mountPath: /var/log/
+              subPath: hive/
+
+      volumes:
+        - name: hive-vol
+          persistentVolumeClaim:
+            claimName: {{ include "hive.fullname" . }}-pvc

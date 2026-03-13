@@ -3,7 +3,7 @@ entries:
   apicurio:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T18:35:07.722586842+05:30"
+    created: "2026-03-13T11:19:39.222202226+05:30"
     description: A Helm chart for Kubernetes
     digest: 259a52427166dce6f5dbb07bfd849862c9011617d93b7abf488b86d127daee9a
     name: apicurio
@@ -14,7 +14,7 @@ entries:
   debezium:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-03-12T18:35:07.7236279+05:30"
+    created: "2026-03-13T11:19:39.222995645+05:30"
     description: A Helm chart for Debezium deployment
     digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
     name: debezium
@@ -24,7 +24,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-03-12T18:35:07.727661531+05:30"
+    created: "2026-03-13T11:19:39.324863083+05:30"
     description: A Helm chart for Debezium deployment
     digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
     name: debezium
@@ -32,10 +32,21 @@ entries:
     urls:
     - repo/debezium-0.1.0.tgz
     version: 0.1.0
+  hive:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-03-13T11:19:39.223775425+05:30"
+    description: A Helm chart for Kubernetes
+    digest: fdd29cf1a60915a78e142f91c1238f5e21805fe6ab847909481fb386bda869f7
+    name: hive
+    type: application
+    urls:
+    - hive-0.1.0.tgz
+    version: 0.1.0
   kafka:
   - apiVersion: v2
     appVersion: 3.5.1
-    created: "2026-03-12T18:35:07.724649824+05:30"
+    created: "2026-03-13T11:19:39.231795804+05:30"
     description: A Helm chart for Kafka with PV/PVC and NodePort
     digest: f6fb382fe20cd56ba191b9429b25c19a7dfff507e02dad1ecf27fa228e0891e8
     name: kafka
@@ -43,10 +54,21 @@ entries:
     urls:
     - kafka-0.1.0.tgz
     version: 0.1.0
+  opa:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2026-03-13T11:19:39.25926673+05:30"
+    description: Open Policy Agent Deployment
+    digest: 54659a9719f49b9da262329b9a0a5671c373a70331ac747b9c8f684d54a041e5
+    name: opa
+    type: application
+    urls:
+    - opa-0.1.0.tgz
+    version: 0.1.0
   redis:
   - apiVersion: v2
     appVersion: "7"
-    created: "2026-03-12T18:35:07.725379801+05:30"
+    created: "2026-03-13T11:19:39.260088495+05:30"
     description: Redis Deployment for Kubernetes
     digest: ac75bed72f5c0a43f420495ec89a49fe1bd1732ad388f06d844d12abf932a805
     name: redis
@@ -57,7 +79,7 @@ entries:
   trino:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-12T18:35:07.726852956+05:30"
+    created: "2026-03-13T11:19:39.296552468+05:30"
     description: A Helm chart for Kubernetes
     digest: 599c45198407c674c46f20476f4ec5953625e0fd092c2ece9ab257bb8330f8aa
     name: trino
@@ -65,4 +87,4 @@ entries:
     urls:
     - trino-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-12T18:35:07.721156537+05:30"
+generated: "2026-03-13T11:19:39.208051677+05:30"
