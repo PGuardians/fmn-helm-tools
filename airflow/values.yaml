@@ -1,0 +1,33 @@
+namespace: {{ .Release.Namespace }}
+
+image:
+  repository: crfmphbidevneu001.azurecr.io/airflow
+  tag: test
+  pullPolicy: Always
+
+imagePullSecret: acr-secret
+
+postgres:
+  host: postgres
+  port: 5432
+  user: airflow
+  password: airflow
+  db: airflow
+
+storage:
+  class: azureblob-sc
+  size: 50Gi
+
+azureBlobSecret: azure-blob-secret
+
+nodeSelector:
+  app: airflow
+
+webserver:
+  replicas: 1
+  serviceType: NodePort
+  port: 8080
+  nodePort: 30080
+
+scheduler:
+  replicas: 1

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-master
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: spark-master
+  type: NodePort
+  ports:
+    - name: spark
+      port: 7077
+      targetPort: 7077
+      nodePort: 30077
+    - name: webui
+      port: 8080
+      targetPort: 8080
+      nodePort: 30080

@@ -1,0 +1,39 @@
+image:
+  repository: ""
+  tag: test
+  pullPolicy: Always
+
+imagePullSecret: acr-secret
+
+worker:
+  replicas: 2
+
+spark:
+  executorMemory: 2g
+  driverMemory: 2g
+  shufflePartitions: 200
+
+azure:
+  storageAccount: ""
+  secret: azure-storage-secret
+  warehouse: ""
+  checkpoint: ""
+
+nodeSelector:
+  role: sparkworker1
+
+logs:
+  hostPath: /var/log/fmphbi/fmn-bi-spark
+
+pvc:
+  storageClass: ""
+  size: 10Gi
+
+pv:
+  storage: 10Gi
+  hostPath: /var/log/fmphbi/fmn-bi-spark
+
+codeVolume:
+  storageClass: spark-storage
+  size: 20Gi
+  hostPath: /home/sparkdev/sparkdata/

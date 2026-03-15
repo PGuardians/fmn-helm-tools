@@ -1,0 +1,12 @@
+image:
+  repository: crfmphbidevneu001.azurecr.io/spark
+  tag: test
+
+environment: dev
+
+azure:
+  storageAccount: stfmphbidevneu001
+  secretName: azure-storage-secret
+  warehouse: abfs://bronze@stfmphbidevneu001.dfs.core.windows.net/warehouse
+  checkpoint: abfs://bronze@stfmphbidevneu001.dfs.core.windows.net/warehouse/checkpoints
+

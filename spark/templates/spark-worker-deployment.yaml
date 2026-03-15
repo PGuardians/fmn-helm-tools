@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-worker
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.worker.replicas }}
+
+  selector:
+    matchLabels:
+      app: spark-worker
+
+  template:
+    metadata:
+      labels:
+        app: spark-worker
+
+    spec:
+
+      nodeSelector:
+        role: {{ .Values.nodeSelector.role }}
+
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecret }}
+
+      containers:
+        - name: spark-worker
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          command: ["/opt/spark/bin/spark-class"]
+
+          args:
+            - org.apache.spark.deploy.worker.Worker
+            - spark://spark-master:7077
+
+          ports:
+            - containerPort: 8081
+
+          volumeMounts:
+            - name: code-storage
+              mountPath: /opt/spark/code
+            - name: app-log
+              mountPath: /opt/spark/code/Service-EFS.FMPRoHub.DataWorkloads/app/config/logs
+
+      volumes:
+        - name: code-storage
+          persistentVolumeClaim:
+            claimName: code-pvc
+
+        - name: app-log
+          hostPath:
+            path: {{ .Values.logs.hostPath }}
+            type: DirectoryOrCreate

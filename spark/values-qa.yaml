@@ -1,0 +1,16 @@
+image:
+  repository: crfmphbidevneu001.azurecr.io/spark
+  tag: test
+
+environment: qa
+
+azure:
+  storageAccount: stfmphbiqaneu001
+  secretName: azure-storage-secret
+  warehouse: abfs://bronze@stfmphbiqaneu001.dfs.core.windows.net/warehouse
+  checkpoint: abfs://bronze@stfmphbiqaneu001.dfs.core.windows.net/warehouse/checkpoints
+
+codeVolume:
+  storageClass: spark-storage
+  size: 20Gi
+  hostPath: /home/sparkqa/sparkdata/

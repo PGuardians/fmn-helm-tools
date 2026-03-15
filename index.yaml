@@ -1,111 +1,133 @@
 apiVersion: v1
 entries:
+  airflow:
+  - apiVersion: v2
+    appVersion: "2.9"
+    created: "2026-03-15T17:11:07.506421593+05:30"
+    description: Apache Airflow deployment with Azure Blob storage
+    digest: af5b841f5674200a90655215909339b61660dc1d7544df45acaddc9b6a6df1be
+    name: airflow
+    type: application
+    urls:
+    - file:///home/kube/fmn-helm-tools/airflow-0.1.0.tgz
+    version: 0.1.0
   apicurio:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-13T16:30:37.186502527+05:30"
+    created: "2026-03-15T17:11:07.514272986+05:30"
     description: A Helm chart for Kubernetes
     digest: 259a52427166dce6f5dbb07bfd849862c9011617d93b7abf488b86d127daee9a
     name: apicurio
     type: application
     urls:
-    - apicurio-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/apicurio-0.1.0.tgz
     version: 0.1.0
   debezium:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-03-13T16:30:37.187355356+05:30"
+    created: "2026-03-15T17:11:07.515699666+05:30"
     description: A Helm chart for Debezium deployment
     digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
     name: debezium
     type: application
     urls:
-    - debezium-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/debezium-0.1.0.tgz
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-03-13T16:30:37.194242546+05:30"
+    created: "2026-03-15T17:11:07.633596692+05:30"
     description: A Helm chart for Debezium deployment
     digest: 4e0105b37f32e3ded0bdcd4adba4c93dc84c6ec798cc221273c1ed0bf5dd98fb
     name: debezium
     type: application
     urls:
-    - repo/debezium-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/repo/debezium-0.1.0.tgz
     version: 0.1.0
   hive:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-13T16:30:37.188232088+05:30"
+    created: "2026-03-15T17:11:07.538080113+05:30"
     description: A Helm chart for Kubernetes
     digest: 10aa77e8dd542db0116e1ba30c6c21a9631c920b7b496201130f01746d5ab79f
     name: hive
     type: application
     urls:
-    - hive-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/hive-0.1.0.tgz
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-13T16:30:37.195333187+05:30"
+    created: "2026-03-15T17:11:07.637300649+05:30"
     description: A Helm chart for Kubernetes
     digest: 10aa77e8dd542db0116e1ba30c6c21a9631c920b7b496201130f01746d5ab79f
     name: hive
     type: application
     urls:
-    - repo/hive-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/repo/hive-0.1.0.tgz
     version: 0.1.0
   kafka:
   - apiVersion: v2
     appVersion: 3.5.1
-    created: "2026-03-13T16:30:37.189011118+05:30"
+    created: "2026-03-15T17:11:07.570014879+05:30"
     description: A Helm chart for Kafka with PV/PVC and NodePort
     digest: 126d63a169d6e247b0a5bb3f5b4f8ef51df82cab96cc060a5e3078f51170f1fd
     name: kafka
     type: application
     urls:
-    - kafka-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/kafka-0.1.0.tgz
     version: 0.1.0
   opa:
   - apiVersion: v2
     appVersion: latest
-    created: "2026-03-13T16:30:37.189970442+05:30"
+    created: "2026-03-15T17:11:07.592863383+05:30"
     description: Open Policy Agent Deployment
     digest: 54659a9719f49b9da262329b9a0a5671c373a70331ac747b9c8f684d54a041e5
     name: opa
     type: application
     urls:
-    - opa-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/opa-0.1.0.tgz
     version: 0.1.0
   postgres:
   - apiVersion: v2
     appVersion: "15"
-    created: "2026-03-13T16:30:37.190739891+05:30"
+    created: "2026-03-15T17:11:07.618998025+05:30"
     description: PostgreSQL StatefulSet with PV and NodePort
     digest: 4b0f11bcad732ee3ea1c2a838c5a82b722b512427eb3b8be644616b4270857b7
     name: postgres
     type: application
     urls:
-    - postgres-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/postgres-0.1.0.tgz
     version: 0.1.0
   redis:
   - apiVersion: v2
     appVersion: "7"
-    created: "2026-03-13T16:30:37.191472478+05:30"
+    created: "2026-03-15T17:11:07.619724174+05:30"
     description: Redis Deployment for Kubernetes
     digest: ac75bed72f5c0a43f420495ec89a49fe1bd1732ad388f06d844d12abf932a805
     name: redis
     type: application
     urls:
-    - redis-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/redis-0.1.0.tgz
+    version: 0.1.0
+  spark-cluster:
+  - apiVersion: v2
+    appVersion: "3.5"
+    created: "2026-03-15T17:11:07.621090775+05:30"
+    description: Spark Master Worker Cluster with Streaming Jobs
+    digest: e95d5ec720b80f57e6b079a631cf007f512ccd20820c3513de6ccfbb84c2c5a3
+    name: spark-cluster
+    type: application
+    urls:
+    - file:///home/kube/fmn-helm-tools/spark-cluster-0.1.0.tgz
     version: 0.1.0
   trino:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-03-13T16:30:37.19311527+05:30"
+    created: "2026-03-15T17:11:07.630105976+05:30"
     description: A Helm chart for Kubernetes
     digest: 599c45198407c674c46f20476f4ec5953625e0fd092c2ece9ab257bb8330f8aa
     name: trino
     type: application
     urls:
-    - trino-0.1.0.tgz
+    - file:///home/kube/fmn-helm-tools/trino-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-13T16:30:37.18521701+05:30"
+generated: "2026-03-15T17:11:07.491175884+05:30"

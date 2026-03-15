@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: airflow-blob-dag-pv
+spec:
+  capacity:
+    storage: {{ .Values.storage.size }}
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.storage.class }}
+  csi:
+    driver: blob.csi.azure.com
+    readOnly: false
+    volumeHandle: blob-pv-dags-new
+    volumeAttributes:
+      containerName: airflow
+      protocol: fuse2
+      allowOther: "true"
+    nodeStageSecretRef:
+      name: {{ .Values.azureBlobSecret }}
+      namespace: {{ .Release.Namespace }}

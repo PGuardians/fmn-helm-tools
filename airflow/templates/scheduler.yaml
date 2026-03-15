@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-scheduler
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.scheduler.replicas }}
+  selector:
+    matchLabels:
+      component: scheduler
+  template:
+    metadata:
+      labels:
+        component: scheduler
+    spec:
+      serviceAccountName: airflow
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecret }}
+
+      nodeSelector:
+        app: {{ .Values.nodeSelector.app }}
+
+      containers:
+        - name: scheduler
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          command: ["airflow","scheduler"]
+          env:
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: KubernetesExecutor
+            - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
+              value: postgresql+psycopg2://{{ .Values.postgres.user }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:{{ .Values.postgres.port }}/{{ .Values.postgres.db }}
